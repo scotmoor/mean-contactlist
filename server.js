@@ -3,6 +3,7 @@ var path = require("path");
 var bodyParser = require("body-parser");
 var mongodb = require("mongodb");
 var ObjectID = mongodb.ObjectID;
+var config = require("./config.js")
 
 var CONTACTS_COLLECTION = "contacts";
 
@@ -14,7 +15,7 @@ app.use(bodyParser.json());
 var db;
 
 // Connect to the database before starting the application server. 
-mongodb.MongoClient.connect(process.env.MONGODB_URI, function (err, database) {
+mongodb.MongoClient.connect(config.mongodb.dbconnection, function (err, database) {
   if (err) {
     console.log(err);
     process.exit(1);
